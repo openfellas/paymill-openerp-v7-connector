@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ############################################################################## 
+	# # Copyright (c) 2014 Netbox (http://www.netbox.rs) All Rights Reserved. 
+	# # WARNING: This program as such is intended to be used by professional 
+	# programmers who take the whole responsability of assessing all potential 
+	# consequences resulting from its eventual inadequacies and bugs # End users 
+	who are looking for a ready-to-use solution with commercial # garantees and 
+	support are strongly adviced to contract a Free Software # Service Company 
+	# # This program is Free Software; you can redistribute it and/or # modify 
+	it under the terms of the GNU General Public License # as published by the 
+	Free Software Foundation; either version 2 # of the License, or (at your 
+	option) any later version. # # This program is distributed in the hope that 
+	it will be useful, # but WITHOUT ANY WARRANTY; without even the implied warranty 
+	of # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the # GNU General 
+	Public License for more details. # # You should have received a copy of the 
+	GNU General Public License # along with this program; if not, write to the 
+	Free Software # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+	02111-1307, USA. # ############################################################################## -->
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="paymill_account_voucher_form_view_inherit">
+			<field name="name">paymill_account_voucher_form_view_inherit</field>
+			<field name="model">account.voucher</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="account_voucher.view_voucher_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='number']" position="after">
+					<field name="paymill_transaction_id" readonly="1"/>
+				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="paymill_view_vendor_receipt_dialog_form_view_inherit">
+			<field name="name">paymill_view_vendor_receipt_dialog_form_view_inherit</field>
+			<field name="model">account.voucher</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="account_voucher.view_vendor_receipt_dialog_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='journal_id']" position="attributes">
+					<attribute name="attrs">{'readonly': [('is_paymill_preauth_active','=',True)]}</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='journal_id']" position="after">					
+					<field name="is_paymill_preauth" invisible="1" />
+					<field name="is_paymill_preauth_active" invisible="1" />
+					<field name="is_paymill" invisible="1" />
+					<field name="is_refund_and_paymill_journal" invisible="1" />
+
+					<!-- For Pay -->
+					<field name="paymill_payment_information_id"
+						attrs="{'invisible': ['|',('is_refund_and_paymill_journal','=',True),('is_paymill','=',False)], 
+								'required': [('is_paymill','=',True),('is_refund_and_paymill_journal','=',False)],
+								'readonly': [('is_paymill_preauth','=',True),('is_paymill_preauth_active','=',True)]}"
+
+						domain="[('partner_id','=',partner_id)]"
+
+						context="{'form_view_ref': 'paymill.paymill_card_registration_form_view', 
+									'default_partner_id': partner_id,
+								}"
+
+						options='{"no_open":True}' 
+
+						widget="PaymillMany2One"
+
+						groups="paymill.group_paymill_admin,paymill.group_paymill_user"
+
+						on_change="ochange_paymill_payment_information_id(paymill_payment_information_id)"
+					/>
+
+					<!-- For Preauth -->	
+					<field name="paymill_preauth"
+						readonly="1"
+
+						attrs="{'invisible': [('is_paymill_preauth_active','=',False)]}"
+
+						groups="paymill.group_paymill_admin,paymill.group_paymill_user"
+					/>
+
+					<!-- For Refund -->
+					<field name="paymill_transaction_id"
+						on_change="ochange_paymill_transaction_id(paymill_transaction_id)"
+
+						attrs="{'invisible': ['|',('is_refund_and_paymill_journal','=',False),('is_paymill','=',False)],
+								'required': [('is_refund_and_paymill_journal','=',True)],}"
+
+						domain="[('partner_id','=',partner_id),('status','in',['closed','partial_refunded'])]"
+
+						groups="paymill.group_paymill_admin,paymill.group_paymill_user"
+					/>
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</openerp>

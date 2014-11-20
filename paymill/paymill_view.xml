@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ############################################################################## 
+	# # Copyright (c) 2014 Netbox (http://www.netbox.rs) All Rights Reserved. 
+	# # WARNING: This program as such is intended to be used by professional 
+	# programmers who take the whole responsability of assessing all potential 
+	# consequences resulting from its eventual inadequacies and bugs # End users 
+	who are looking for a ready-to-use solution with commercial # garantees and 
+	support are strongly adviced to contract a Free Software # Service Company 
+	# # This program is Free Software; you can redistribute it and/or # modify 
+	it under the terms of the GNU General Public License # as published by the 
+	Free Software Foundation; either version 2 # of the License, or (at your 
+	option) any later version. # # This program is distributed in the hope that 
+	it will be useful, # but WITHOUT ANY WARRANTY; without even the implied warranty 
+	of # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the # GNU General 
+	Public License for more details. # # You should have received a copy of the 
+	GNU General Public License # along with this program; if not, write to the 
+	Free Software # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+	02111-1307, USA. # ############################################################################## -->
+<openerp>
+	<data>
+		<!-- Paymill Payment Information -->
+		<record model="ir.ui.view" id="paymill_payment_information_form_view">
+			<field name="name">paymill_payment_information_form_view</field>
+			<field name="model">paymill.payment.information</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Paymill Payment Information" version="7.0" create="false" edit="false">
+					<sheet>
+						<group col="4" colspan="4">
+							<field name="payment" required="1" />
+							<field name="type" />
+							<field name="card_type" />
+							<field name="client" />
+							<field name="last4" />
+							<field name="country" />
+							<field name="expire_month" />
+							<field name="created_at" />
+							<field name="expire_year" />
+							<field name="updated_at" />
+							<field name="app_id" />
+						</group>
+						<newline />
+						<notebook>
+							<page string="Transactions">
+								<group>
+									<field name="paymill_transaction_ids" nolabel="1" readonly="1" />
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="paymill_card_registration_form_view">
+			<field name="name">paymill_card_registration_form_view</field>
+			<field name="model">paymill.payment.information</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Paymill - Card Registration" version="7.0" create="false" edit="false">
+					<label for="card_number_c1" string="Card Number" class="paymill_spacer" widget="integer" />
+
+					<field name="card_number_c1" class="paymill_input" />
+					-
+					<field name="card_number_c2" class="paymill_input" />
+					-
+					<field name="card_number_c3" class="paymill_input" />
+					-
+					<field name="card_number_c4" class="paymill_input" />
+
+					<group col="6">
+
+					</group>
+
+					<group col="8">
+						<field name="partner_name" colspan="2" invisible="1" />
+						<newline />
+						<field name="cvc_code" colspan="2" />
+						<newline />
+						<field name="expiry_month" colspan="2" />
+						<newline />
+						<field name="expiry_year" colspan="2" />
+						<group>
+						</group>
+						<group>
+						</group>
+						<group>
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="paymill_payment_information_tree_view">
+			<field name="name">paymill_payment_information_tree_view</field>
+			<field name="model">paymill.payment.information</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Paymill Payment Information" version="7.0">
+					<field name="card_type" />
+					<field name="last4" />
+					<field name="expire_month" />
+					<field name="expire_year" />
+					<field name="type" />
+					<field name="country" />
+					<field name="payment" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Paymill Transaction -->
+		<record model="ir.ui.view" id="paymill_transaction_form_view">
+			<field name="name">paymill_transaction_form_view</field>
+			<field name="model">paymill.transaction</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Paymill Transaction" version="7.0">
+					<sheet>
+						<group col="4" colspan="4">
+							<field name="transaction" required="1" />
+							<field name="description" />
+							<field name="paymill_payment_information_id" />
+							<field name="livemode" />
+							<field name="response_code" />
+							<field name="is_fraud" />
+							<field name="status" />
+							<field name="created_at" />
+							<field name="amount" />
+							<field name="updated_at" />
+							<field name="origin_amount" />
+							<field name="short_id" />
+							<field name="currency" />
+							<field name="app_id" />
+							<field name="paymill_preauth_id" atrrs="{'invisible': [('status','!=','preauth')]}" />
+						</group>
+						<newline />
+						<notebook>
+							<page string="Refunds">
+								<group>
+									<field name="paymill_refund_ids" nolabel="1" readonly="1" />
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="paymill_transaction_tree_view">
+			<field name="name">paymill_transaction_tree_view</field>
+			<field name="model">paymill.transaction</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Paymill Transaction" version="7.0">
+					<field name="response_code" />
+					<field name="status" />
+					<field name="amount" />
+					<field name="origin_amount" />
+					<field name="transaction" />
+					<field name="is_fraud" />
+					<field name="currency" />
+					<field name="paymill_preauth_id" atrrs="{'invisible': [('status','!=','preauth')]}" />
+					<field name="paymill_payment_expiry_month_related" />
+					<field name="paymill_payment_expiry_year_related" />
+					<field name="paymill_payment_last_four_related" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Paymill Refund -->
+		<record model="ir.ui.view" id="paymill_refund_form_view">
+			<field name="name">paymill_refund_form_view</field>
+			<field name="model">paymill.refund</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Paymill Refund">
+					<field name="refund" />
+					<field name="description" />
+					<field name="status" />
+					<field name="livemode" />
+					<field name="amount" />
+					<field name="app_id" />
+					<field name="response_code" />
+					<field name="created_at" />
+					<field name="paymill_transaction_id" />
+					<field name="updated_at" />
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="paymill_refund_tree_view">
+			<field name="name">paymill_refund_tree_view</field>
+			<field name="model">paymill.refund</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Paymill Refund">
+					<field name="description" />
+					<field name="response_code" />
+					<field name="status" />
+					<field name="amount" />
+					<field name="refund" />
+					<field name="paymill_transaction_id" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Paymill Preauthorization -->
+		<record model="ir.ui.view" id="paymill_preauthorization_form_view">
+			<field name="name">paymill_preauthorization_form_view</field>
+			<field name="model">paymill.preauthorization</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Paymill Preauthorization">
+					<field name="preauthorization" />
+					<field name="description" />
+					<field name="payment_id" />
+					<field name="livemode" />
+					<field name="amount" />
+					<field name="app_id" />
+					<field name="currency" />
+					<field name="created_at" />
+					<field name="updated_at" />
+					<field name="status" />
+				</form>
+			</field>
+		</record>
+
+		<!-- Paymill Card -->
+		<record model="ir.ui.view" id="paymill_card_form_view">
+			<field name="name">paymill_card_form_view</field>
+			<field name="model">paymill.card</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Cards" version="7.0">
+					<group>
+						<field name="name" required="1" />
+	`					<field name="card_type" />
+						<field name="description" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- Paymill Connect Configuration -->
+		<record model="ir.ui.view" id="paymill_connect_configuration_form_view">
+			<field name="name">paymill_connect_configuration_form_view</field>
+			<field name="model">paymill.connect.configuration</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Paymill Configuration">
+					<group string="Allowed Currencies">
+						<field name="paymill_currency_holder_ids" nolabel="1" readonly="1">
+							<tree string="Currencies" editable="bottom">
+								<field name="currency_id" />
+							</tree>
+						</field>
+					</group>
+					<group string="Allowed Cards">
+						<field name="paymill_card_holder_ids" nolabel="1" readonly="1">
+							<tree string="Cards" editable="bottom">
+								<field name="card_id" />
+								<field name="card_type" readonly="1" />
+							</tree>
+						</field>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- Paymill Connect Configuration Wizard -->
+		<record model="ir.ui.view" id="paymill_connect_configuration_wizard_form_view">
+			<field name="name">paymill_connect_configuration_wizard_form_view</field>
+			<field name="model">paymill.connect.configuration.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Paymill Connect Configuration" version="7.0">
+					<header>
+						<button string="Apply" type="object" name="execute" class="oe_highlight" />
+                    or
+                    <button string="Cancel" type="object" name="cancel" class="oe_link" />
+						<field name="state" widget="statusbar" statusbar_colors='{"inactive":"red","error":"red","active":"blue"}' />
+					</header>
+					<div>
+						<div class="oe_right oe_button_box" name="buttons">
+
+						</div>
+
+						<separator string="General" />
+						<group>
+							<field name="is_initialized" invisible="1" />
+							<label for="id" string="Options" />
+							<div>
+								<div>
+									<div>
+										<label for="name" invisible="1" />
+										<field name="name" class="oe_inline" invisible="1"/>
+									</div>
+									<div>
+										<label for="client_id" />/<label for="client_secret" />
+										<field name="client_id" class="oe_inline" /> / <field name="client_secret" class="oe_inline" />
+									</div>
+									<div>
+										<label for="refresh_token" attrs="{'invisible': [('state','=','inactive')]}" />
+										<field name="refresh_token" class="oe_inline" readonly="1" attrs="{'invisible': [('state','=','inactive')]}" />
+									</div>
+									<div>
+										<label for="live_public_key" attrs="{'invisible': ['|',('state','=','inactive'),('is_live','=',False)]}" />
+										<field name="live_public_key" class="oe_inline" readonly="1" attrs="{'invisible': ['|',('state','=','inactive'),('is_live','=',False)]}" />
+									</div>
+									<div>
+										<label for="live_private_key" attrs="{'invisible': ['|',('state','=','inactive'),('is_live','=',False)]}" />
+										<field name="live_private_key" class="oe_inline" readonly="1" attrs="{'invisible': ['|',('state','=','inactive'),('is_live','=',False)]}" />
+									</div>
+									<div>
+										<label for="test_public_key" attrs="{'invisible': ['|',('state','=','inactive'),('is_live','=',True)]}" />
+										<field name="test_public_key" class="oe_inline" readonly="1" attrs="{'invisible': ['|',('state','=','inactive'),('is_live','=',True)]}" />
+									</div>
+									<div>
+										<label for="test_private_key" attrs="{'invisible': ['|',('state','=','inactive'),('is_live','=',True)]}" />
+										<field name="test_private_key" class="oe_inline" readonly="1" attrs="{'invisible': ['|',('state','=','inactive'),('is_live','=',True)]}" />
+									</div>
+									<div>
+										<label for="error" attrs="{'invisible': [('state','!=','error')]}" readonly="1" />
+										<field name="error" class="oe_inline" attrs="{'invisible': [('state','!=','error')]}" readonly="1" />
+									</div>
+									<div>
+										<label for="error_description" attrs="{'invisible': [('state','!=','error')]}" readonly="1" />
+										<field name="error_description" class="oe_inline" attrs="{'invisible': [('state','!=','error')]}" readonly="1" />
+									</div>
+								</div>
+							</div>
+						</group>
+
+						<group>
+							<label for="id" string="Accounting" />
+							<div>
+								<div>
+									<div>
+										<label for="journal_id" />
+										<field name="journal_id" class="oe_inline" required="1" />
+									</div>
+								</div>
+							</div>
+						</group>
+
+						<group>
+							<label for="id" string="Mode" attrs="{'invisible': [('state','=','inactive')]}" />
+							<div>
+								<div>
+									<div>
+										<field name="is_live" class="oe_inline" readonly="1" attrs="{'invisible': [('state','=','inactive')]}" />
+										<label for="is_live" readonly="1" attrs="{'invisible': [('state','=','inactive')]}" />
+									</div>
+								</div>
+							</div>
+						</group>
+
+						<group>
+							<paymill_button name="paymill_connect" string="Connect" class="oe_highlight" type="object" />
+						</group>
+						<group>
+							<button name="refresh_token" string="Refresh Token" class="oe_highlight" type="object" attrs="{'invisible': [('state','=','inactive')]}" />
+						</group>
+
+						<separator string="Permissions" />
+						<group>
+							<label for="id" string="Payments" />
+							<div>
+								<div>
+									<div>
+										<field name="payments_r" class="oe_inline" />
+										<label for="payments_r" />
+									</div>
+									<div>
+										<field name="payments_w" class="oe_inline" />
+										<label for="payments_w" />
+									</div>
+									<div>
+										<field name="payments_rw" class="oe_inline" />
+										<label for="payments_rw" />
+									</div>
+								</div>
+							</div>
+						</group>
+						<group>
+							<label for="id" string="Transactions" />
+							<div>
+								<div>
+									<div>
+										<field name="transactions_r" class="oe_inline" />
+										<label for="transactions_r" />
+									</div>
+									<div>
+										<field name="transactions_w" class="oe_inline" />
+										<label for="transactions_w" />
+									</div>
+									<div>
+										<field name="transactions_rw" class="oe_inline" />
+										<label for="transactions_rw" />
+									</div>
+								</div>
+							</div>
+						</group>
+						<group>
+							<label for="id" string="Refunds" />
+							<div>
+								<div>
+									<div>
+										<field name="refunds_r" class="oe_inline" />
+										<label for="refunds_r" />
+									</div>
+									<div>
+										<field name="refunds_w" class="oe_inline" />
+										<label for="refunds_w" />
+									</div>
+									<div>
+										<field name="refunds_rw" class="oe_inline" />
+										<label for="refunds_rw" />
+									</div>
+								</div>
+							</div>
+						</group>
+						<group>
+							<label for="id" string="Preauthorizations" />
+							<div>
+								<div>
+									<div>
+										<field name="preauthorizations_r" class="oe_inline" />
+										<label for="preauthorizations_r" />
+									</div>
+									<div>
+										<field name="preauthorizations_w" class="oe_inline" readonly="1" />
+										<label for="preauthorizations_w" />
+									</div>
+									<div>
+										<field name="preauthorizations_rw" class="oe_inline" readonly="1" />
+										<label for="preauthorizations_rw" />
+									</div>
+								</div>
+							</div>
+						</group>
+						<group>
+							<label for="id" string="Clients" />
+							<div>
+								<div>
+									<div>
+										<field name="clients_r" class="oe_inline" />
+										<label for="clients_r" />
+									</div>
+									<div>
+										<field name="clients_w" class="oe_inline" />
+										<label for="clients_w" />
+									</div>
+									<div>
+										<field name="clients_rw" class="oe_inline" />
+										<label for="clients_rw" />
+									</div>
+								</div>
+							</div>
+						</group>
+						<group>
+							<label for="id" string="Offers" />
+							<div>
+								<div>
+									<div>
+										<field name="offers_r" class="oe_inline" />
+										<label for="offers_r" />
+									</div>
+									<div>
+										<field name="offers_w" class="oe_inline" />
+										<label for="offers_w" />
+									</div>
+									<div>
+										<field name="offers_rw" class="oe_inline" />
+										<label for="offers_rw" />
+									</div>
+								</div>
+							</div>
+						</group>
+						<group>
+							<label for="id" string="Frauds" />
+							<div>
+								<div>
+									<div>
+										<field name="frauds_r" class="oe_inline" />
+										<label for="frauds_r" />
+									</div>
+									<div>
+										<field name="frauds_w" class="oe_inline" />
+										<label for="frauds_w" />
+									</div>
+									<div>
+										<field name="frauds_rw" class="oe_inline" />
+										<label for="frauds_rw" />
+									</div>
+								</div>
+							</div>
+						</group>
+						<group>
+							<label for="id" string="Subscriptions" />
+							<div>
+								<div>
+									<div>
+										<field name="subscriptions_r" class="oe_inline" />
+										<label for="subscriptions_r" />
+									</div>
+									<div>
+										<field name="subscriptions_w" class="oe_inline" />
+										<label for="subscriptions_w" />
+									</div>
+									<div>
+										<field name="subscriptions_rw" class="oe_inline" />
+										<label for="subscriptions_rw" />
+									</div>
+								</div>
+							</div>
+						</group>
+						<group>
+							<label for="id" string="Webhooks" />
+							<div>
+								<div>
+									<div>
+										<field name="webhooks_r" class="oe_inline" />
+										<label for="webhooks_r" />
+									</div>
+									<div>
+										<field name="webhooks_w" class="oe_inline" />
+										<label for="webhooks_w" />
+									</div>
+									<div>
+										<field name="webhooks_rw" class="oe_inline" />
+										<label for="webhooks_rw" />
+									</div>
+								</div>
+							</div>
+						</group>
+						<group>
+							<label for="id" string="Carrencies and Cards" />
+							<div>
+								<div>
+									<div>
+										<label for="currency">Currencies</label>
+										<button name="configure_currencies_and_cards" type="object" string="Configure Currencies and Cards" icon="gtk-go-forward" class="oe_inline oe_link" />
+									</div>
+								</div>
+							</div>
+						</group>
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_paymill_connect_configuration_wizard_form_view" model="ir.actions.act_window">
+			<field name="name">Paymill</field>
+			<field name="res_model">paymill.connect.configuration.wizard</field>
+			<field name="view_id" ref="paymill_connect_configuration_wizard_form_view" />
+			<field name="view_mode">form</field>
+			<field name="target">inline</field>
+		</record>
+
+		<menuitem id="menu_paymill_connect_configuration" parent="base.menu_config" name="Paymill" groups="paymill.group_paymill_admin" />
+			<menuitem id="menu_paymill_connect_config_general" parent="menu_paymill_connect_configuration" name="General" action="action_paymill_connect_configuration_wizard_form_view" groups="paymill.group_paymill_admin" />
+
+	</data>
+</openerp>

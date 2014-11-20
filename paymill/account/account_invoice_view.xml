@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ############################################################################## 
+	# # Copyright (c) 2014 Netbox (http://www.netbox.rs) All Rights Reserved. 
+	# # WARNING: This program as such is intended to be used by professional 
+	# programmers who take the whole responsability of assessing all potential 
+	# consequences resulting from its eventual inadequacies and bugs # End users 
+	who are looking for a ready-to-use solution with commercial # garantees and 
+	support are strongly adviced to contract a Free Software # Service Company 
+	# # This program is Free Software; you can redistribute it and/or # modify 
+	it under the terms of the GNU General Public License # as published by the 
+	Free Software Foundation; either version 2 # of the License, or (at your 
+	option) any later version. # # This program is distributed in the hope that 
+	it will be useful, # but WITHOUT ANY WARRANTY; without even the implied warranty 
+	of # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the # GNU General 
+	Public License for more details. # # You should have received a copy of the 
+	GNU General Public License # along with this program; if not, write to the 
+	Free Software # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+	02111-1307, USA. # ############################################################################## -->
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="account_invoice_form_view_inherit">
+			<field name="name">account_invoice_form_view_inherit</field>
+			<field name="model">account.invoice</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='account_id']" position="after">
+					<field name="default_payment_id" invisible="1" />
+					<field name="default_paymill_preauth" invisible="1" />
+					<field name="default_journal_id" invisible="1" />
+					<field name="is_paymill_preauth" invisible="1" />
+					<field name="is_paymill_preauth_active" invisible="1" />
+				</xpath>
+				<xpath expr="//field[@name='payment_ids']" position="replace">
+					<field name="payment_ids">
+						<tree string="Payments">
+							<field name="date" />
+							<field name="move_id" />
+							<field name="ref" />
+							<field name="name" />
+							<field name="journal_id" groups="base.group_user" />
+							<field name="debit" />
+							<field name="credit" />
+							<field name="amount_currency" groups="base.group_multi_currency" />
+							<field name="currency_id" groups="base.group_multi_currency" />
+							<field name="paymill_transaction_id" />
+						</tree>
+					</field>
+				</xpath>
+			</field>
+		</record>
+
+		<record id="paymill_view_invoice_customer" model="ir.ui.view">
+			<field name="name">paymill_view_invoice_customer</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account_voucher.view_invoice_customer" />
+			<field name="arch" type="xml">
+				<xpath expr="//button[@string='Register Payment']" position="attributes">
+					<attribute name="context">{'default_paymill_payment_information_id': default_payment_id, 'default_paymill_preauth': default_paymill_preauth, 'default_journal_id': default_journal_id, 'default_is_paymill_preauth': is_paymill_preauth, 'default_is_paymill_preauth_active': is_paymill_preauth_active}</attribute>
+				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="paymill_view_move_line_form_inherit">
+			<field name="name">paymill_view_move_line_form_inherit</field>
+			<field name="model">account.move.line</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="account.view_move_line_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='company_id']" position="after">
+					<field name="paymill_transaction_id" attrs="{'invisible': [('paymill_transaction_id','=',False)]}" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ############################################################################## 
+	# # Copyright (c) 2014 Netbox (http://www.netbox.rs) All Rights Reserved. 
+	# # WARNING: This program as such is intended to be used by professional 
+	# programmers who take the whole responsability of assessing all potential 
+	# consequences resulting from its eventual inadequacies and bugs # End users 
+	who are looking for a ready-to-use solution with commercial # garantees and 
+	support are strongly adviced to contract a Free Software # Service Company 
+	# # This program is Free Software; you can redistribute it and/or # modify 
+	it under the terms of the GNU General Public License # as published by the 
+	Free Software Foundation; either version 2 # of the License, or (at your 
+	option) any later version. # # This program is distributed in the hope that 
+	it will be useful, # but WITHOUT ANY WARRANTY; without even the implied warranty 
+	of # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the # GNU General 
+	Public License for more details. # # You should have received a copy of the 
+	GNU General Public License # along with this program; if not, write to the 
+	Free Software # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 
+	02111-1307, USA. # ############################################################################## -->
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="paymill_sale_order_form_view_inherit">
+			<field name="name">paymill_sale_order_form_view_inherit</field>
+			<field name="model">sale.order</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="sale.view_order_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//button[@string='Cancel Order']" position="after">
+					<field name="paymill_enable" invisible="1"/>
+					<button name="%(action_paymill_preauth_wizard_form_view)d" 
+					string="Paymill Preauth"
+					class="oe_highlight"
+					type="action"
+					groups="paymill.group_paymill_admin,paymill.group_paymill_user"
+					context="{'default_amount': amount_total, 'default_partner_id': partner_id}"
+					attrs="{'invisible': ['|','|',('paymill_enable','=',False),('is_paymill_preauth','=',True),('state','!=','manual')]}"
+					/>
+				</xpath>
+				<xpath expr="//field[@name='pricelist_id']" position="after">
+					<field name="is_paymill_preauth" invisible="1" groups="paymill.group_paymill_admin,paymill.group_paymill_user"/>
+					<field name='paymill_preauthorization_id' attrs="{'invisible': [('is_paymill_preauth','!=',True)]}" groups="paymill.group_paymill_admin,paymill.group_paymill_user"/>
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</openerp>

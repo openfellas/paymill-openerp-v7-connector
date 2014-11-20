@@ -1,0 +1,639 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* paymill
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20140421-231236\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-07-23 13:28+0000\n"
+"PO-Revision-Date: 2014-07-23 13:28+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: paymill
+#: view:res.partner:0
+msgid "Cards"
+msgstr "Karten"
+
+#. module: paymill
+#: field:paymill.payment.information,partner_name:0
+msgid "Partner Name"
+msgstr "Partner Name"
+
+#. module: paymill
+#: view:account.voucher:0
+msgid "{'readonly': [('is_paymill_preauth_active','=',True)]}"
+msgstr "{'readonly': [('is_paymill_preauth_active','=',True)]}"
+
+#. module: paymill
+#: field:paymill.payment.information,created_at:0
+#: field:paymill.preauthorization,created_at:0
+#: field:paymill.refund,created_at:0
+#: field:paymill.transaction,created_at:0
+msgid "Created At"
+msgstr "Erstellt Am"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+msgid "Paymill Connect Configuration"
+msgstr "Paymill Connect Configuration"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+#: view:paymill.payment.information:0
+#: field:paymill.payment.information,paymill_transaction_ids:0
+#: view:res.partner:0
+msgid "Transactions"
+msgstr "Transaktionen"
+
+#. module: paymill
+#: field:paymill.preauthorization,preauthorization:0
+#: field:paymill.transaction,paymill_preauth_id:0
+msgid "Preauthorization"
+msgstr "Preauthorization"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+msgid "Webhooks"
+msgstr "Webhooks"
+
+#. module: paymill
+#: field:paymill.payment.information,expiry_year:0
+msgid "Expiry Year"
+msgstr "Gültig Jahr"
+
+#. module: paymill
+#: model:ir.model,name:paymill.model_paymill_connect_configuration
+msgid "paymill.connect.configuration"
+msgstr "paymill.connect.configuration"
+
+#. module: paymill
+#: selection:paymill.payment.information,expiry_month:0
+msgid "11"
+msgstr "11"
+
+#. module: paymill
+#: field:paymill.payment.information,account:0
+msgid "Account"
+msgstr "Konto"
+
+#. module: paymill
+#: field:paymill.connect.configuration,error_description:0
+msgid "Error Description"
+msgstr "Error Description"
+
+#. module: paymill
+#: field:paymill.transaction,short_id:0
+msgid "Short ID"
+msgstr "Kurz ID"
+
+#. module: paymill
+#: field:paymill.preauth.wizard,amount:0
+#: field:paymill.preauthorization,amount:0
+#: field:paymill.refund,amount:0
+#: field:paymill.transaction,amount:0
+msgid "Amount"
+msgstr "Menge"
+
+#. module: paymill
+#: selection:paymill.payment.information,expiry_month:0
+msgid "12"
+msgstr "12"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+msgid "Preauthorizations"
+msgstr "Preauthorizations"
+
+#. module: paymill
+#: field:account.voucher,is_paymill:0
+msgid "Is Paymill"
+msgstr "Ist Paymill"
+
+#. module: paymill
+#: field:paymill.payment.information,is_debit:0
+msgid "Is Debit"
+msgstr "Ist Debit"
+
+#. module: paymill
+#: model:ir.model,name:paymill.model_paymill_refund
+msgid "paymill.refund"
+msgstr "paymill.refund"
+
+#. module: paymill
+#: field:paymill.transaction,paymill_payment_information_id:0
+msgid "Payment Information"
+msgstr "Payment Information"
+
+#. module: paymill
+#: field:paymill.refund,response_code:0
+#: field:paymill.transaction,response_code:0
+msgid "Response Code"
+msgstr "Antwort Code"
+
+#. module: paymill
+#: model:ir.model,name:paymill.model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: paymill
+#: view:paymill.preauth.wizard:0
+msgid "This wizard will run preauthorization. Preauthorization would reserve some money\n"
+"								from the client's credit card. Transaction would be executed later. This is not possible with direct debit"
+msgstr "Dieser Assistent wird preauthorization laufen. Preauthorization würde etwas Geld  n behalten Von der Kreditkarte des Kunden. Transaktion ausgeführt werden später. Dies ist nicht möglich mit Bankeinzug"
+
+#. module: paymill
+#: field:account.invoice,default_payment_id:0
+msgid "Paymill Payment"
+msgstr "Paymill Zahlungs"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+msgid "Offers"
+msgstr "Offers"
+
+#. module: paymill
+#: selection:paymill.connect.configuration,state:0
+msgid "Inactive"
+msgstr "Inactive"
+
+#. module: paymill
+#: field:paymill.payment.information,type:0
+msgid "Type"
+msgstr "Typ"
+
+#. module: paymill
+#: view:paymill.payment.information:0
+msgid "Paymill - Card Registration"
+msgstr "Paymill - Kartenregistrierung"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+msgid "Subscriptions"
+msgstr "Subscriptions"
+
+#. module: paymill
+#: field:paymill.connect.configuration,client_id:0
+msgid "Client ID"
+msgstr "Client ID"
+
+#. module: paymill
+#: field:account.move.line,paymill_transaction_id:0
+#: field:account.voucher,paymill_transaction_id:0
+#: view:paymill.transaction:0
+msgid "Paymill Transaction"
+msgstr "Paymill Transaktion"
+
+#. module: paymill
+#: field:paymill.payment.information,holder:0
+msgid "Holder"
+msgstr "Halter"
+
+#. module: paymill
+#: field:account.invoice,is_paymill_preauth_active:0
+msgid "Paymill Preauthorization Active"
+msgstr "Paymill Preauthorization Active"
+
+#. module: paymill
+#: field:paymill.refund,paymill_transaction_id:0
+#: field:paymill.transaction,transaction:0
+msgid "Transaction"
+msgstr "Transaktion"
+
+#. module: paymill
+#: field:paymill.transaction,is_fraud:0
+msgid "Is Fraud"
+msgstr "Ist Betrug"
+
+#. module: paymill
+#: model:ir.model,name:paymill.model_res_partner
+#: field:paymill.payment.information,partner_id:0
+#: field:paymill.preauth.wizard,partner_id:0
+#: field:paymill.refund,partner_id:0
+#: field:paymill.transaction,partner_id:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+msgid "Options"
+msgstr "Options"
+
+#. module: paymill
+#: field:paymill.payment.information,expiry_month:0
+msgid "Expiry Month"
+msgstr "Gültig Monat"
+
+#. module: paymill
+#: model:ir.model,name:paymill.model_paymill_transaction
+msgid "paymill.transaction"
+msgstr "paymill.transaction"
+
+#. module: paymill
+#: field:paymill.payment.information,app_id:0
+#: field:paymill.preauthorization,app_id:0
+#: field:paymill.refund,app_id:0
+#: field:paymill.transaction,app_id:0
+msgid "App"
+msgstr "App"
+
+#. module: paymill
+#: view:paymill.payment.information:0
+#: field:res.partner,paymill_payment_information_ids:0
+msgid "Paymill Payment Information"
+msgstr "Paymill Zahlungsinformationen"
+
+#. module: paymill
+#: field:paymill.payment.information,last4:0
+msgid "Last4"
+msgstr "Letzte4"
+
+#. module: paymill
+#: field:paymill.payment.information,updated_at:0
+#: field:paymill.preauthorization,updated_at:0
+#: field:paymill.refund,updated_at:0
+#: field:paymill.transaction,updated_at:0
+msgid "Updated At"
+msgstr "Aktualisiert An"
+
+#. module: paymill
+#: field:paymill.connect.configuration,test_mode:0
+msgid "Test Mode"
+msgstr "Test Mode"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+#: view:paymill.preauth.wizard:0
+msgid "or"
+msgstr "oder"
+
+#. module: paymill
+#: field:paymill.connect.configuration,client_secret:0
+msgid "Client Secret"
+msgstr "Client Secret"
+
+#. module: paymill
+#: view:account.invoice:0
+#: view:paymill.connect.configuration:0
+msgid "Payments"
+msgstr "Zahlungen"
+
+#. module: paymill
+#: field:paymill.payment.information,expire_month:0
+msgid "Expire Month"
+msgstr "Verfalls Monat"
+
+#. module: paymill
+#: field:paymill.payment.information,card_type:0
+msgid "Card Type"
+msgstr "Kartentyp"
+
+#. module: paymill
+#: view:paymill.payment.information:0
+#: field:paymill.payment.information,card_number_c1:0
+#: field:paymill.payment.information,card_number_c2:0
+#: field:paymill.payment.information,card_number_c3:0
+#: field:paymill.payment.information,card_number_c4:0
+msgid "Card Number"
+msgstr "Kartennummer"
+
+#. module: paymill
+#: field:paymill.payment.information,expire_year:0
+msgid "Expire Year"
+msgstr "Verfalls Jahr"
+
+#. module: paymill
+#: model:ir.model,name:paymill.model_ir_config_parameter
+msgid "ir.config_parameter"
+msgstr "ir.config_parameter"
+
+#. module: paymill
+#: field:paymill.connect.configuration,state:0
+#: field:paymill.preauthorization,status:0
+#: field:paymill.refund,status:0
+#: field:paymill.transaction,status:0
+msgid "Status"
+msgstr "Status"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+msgid "Frauds"
+msgstr "Frauds"
+
+#. module: paymill
+#: view:paymill.refund:0
+msgid "Paymill Refund"
+msgstr "Paymill Rückerstattung"
+
+#. module: paymill
+#: field:paymill.connect.configuration,clients_rw:0
+#: field:paymill.connect.configuration,frauds_rw:0
+#: field:paymill.connect.configuration,offers_rw:0
+#: field:paymill.connect.configuration,payments_rw:0
+#: field:paymill.connect.configuration,preauthorizations_rw:0
+#: field:paymill.connect.configuration,refunds_rw:0
+#: field:paymill.connect.configuration,subscriptions_rw:0
+#: field:paymill.connect.configuration,transactions_rw:0
+#: field:paymill.connect.configuration,webhooks_rw:0
+msgid "Read/Write"
+msgstr "Read/Write"
+
+#. module: paymill
+#: model:res.groups,name:paymill.group_paymill_user
+msgid "User"
+msgstr "Benutzer"
+
+#. module: paymill
+#: model:ir.model,name:paymill.model_paymill_payment_information
+msgid "paymill.payment.information"
+msgstr "paymill.payment.information"
+
+#. module: paymill
+#: selection:paymill.connect.configuration,state:0
+msgid "Active"
+msgstr "Active"
+
+#. module: paymill
+#: view:account.invoice:0
+msgid "{'default_paymill_payment_information_id': default_payment_id, 'default_paymill_preauth': default_paymill_preauth, 'default_journal_id': default_journal_id, 'default_is_paymill_preauth': is_paymill_preauth, 'default_is_paymill_preauth_active': is_paymill_preauth_active}"
+msgstr "{'default_paymill_payment_information_id': default_payment_id, 'default_paymill_preauth': default_paymill_preauth, 'default_journal_id': default_journal_id, 'default_is_paymill_preauth': is_paymill_preauth, 'default_is_paymill_preauth_active': is_paymill_preauth_active}"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+msgid "Permissions"
+msgstr "Permissions"
+
+#. module: paymill
+#: view:res.partner:0
+msgid "Paymill Information"
+msgstr "Paymill Information"
+
+#. module: paymill
+#: field:res.partner,paymill_refund_ids:0
+msgid "Paymill Refunds"
+msgstr "Paymill Rückerstattungen"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+msgid "Clients"
+msgstr "Clients"
+
+#. module: paymill
+#: model:ir.model,name:paymill.model_account_move_line
+msgid "Journal Items"
+msgstr "Buchungen"
+
+#. module: paymill
+#: field:paymill.payment.information,client:0
+msgid "Client"
+msgstr "Auftraggeber"
+
+#. module: paymill
+#: model:ir.actions.act_window,name:paymill.action_paymill_preauth_wizard_form_view
+#: view:paymill.preauth.wizard:0
+msgid "Paymill Preauthorization Wizard"
+msgstr "Paymill Preauthorization Wizard"
+
+#. module: paymill
+#: model:ir.actions.act_window,name:paymill.action_paymill_connect_configuration_form_view
+#: model:ir.ui.menu,name:paymill.menu_paymill_connect_config
+msgid "Paymill Connect"
+msgstr "Paymill Connect"
+
+#. module: paymill
+#: field:paymill.connect.configuration,error:0
+#: selection:paymill.connect.configuration,state:0
+msgid "Error"
+msgstr "Error"
+
+#. module: paymill
+#: model:ir.model,name:paymill.model_paymill_preauth_wizard
+msgid "paymill.preauth.wizard"
+msgstr "paymill.preauth.wizard"
+
+#. module: paymill
+#: field:paymill.payment.information,test_dummy:0
+msgid "Test Dummy"
+msgstr "Test Dummy"
+
+#. module: paymill
+#: field:paymill.refund,refund:0
+msgid "Refund"
+msgstr "Rückerstattung"
+
+#. module: paymill
+#: selection:paymill.payment.information,expiry_month:0
+msgid "10"
+msgstr "10"
+
+#. module: paymill
+#: field:paymill.payment.information,code:0
+msgid "Code"
+msgstr "Code"
+
+#. module: paymill
+#: field:paymill.connect.configuration,live_mode:0
+#: field:paymill.preauthorization,livemode:0
+#: field:paymill.refund,livemode:0
+#: field:paymill.transaction,livemode:0
+msgid "Live Mode"
+msgstr "Live-Modus"
+
+#. module: paymill
+#: model:ir.model,name:paymill.model_account_voucher
+msgid "Accounting Voucher"
+msgstr "Buchung Zahlungsbelege"
+
+#. module: paymill
+#: field:account.invoice,default_paymill_preauth:0
+msgid "Default Paymill Preauth"
+msgstr "Default Paymill Preauth"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+msgid "General"
+msgstr "General"
+
+#. module: paymill
+#: field:account.invoice,is_paymill_preauth:0
+#: field:account.voucher,is_paymill_preauth:0
+msgid "Is Paymill Preauth"
+msgstr "Ist Paymill Preauth"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+msgid "Connect"
+msgstr "Connect"
+
+#. module: paymill
+#: model:ir.model,name:paymill.model_account_invoice
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+#: view:paymill.preauth.wizard:0
+msgid "Cancel"
+msgstr "Stornieren"
+
+#. module: paymill
+#: field:paymill.preauth.wizard,config_logo:0
+msgid "Image"
+msgstr "Bild"
+
+#. module: paymill
+#: view:paymill.preauth.wizard:0
+msgid "Run Preauthorization"
+msgstr "Run Preauthorization"
+
+#. module: paymill
+#: field:res.partner,paymill_transaction_ids:0
+msgid "Paymill Transactions"
+msgstr "Paymill Transaktionen"
+
+#. module: paymill
+#: field:account.voucher,is_refund_and_paymill_journal:0
+msgid "Is Refund and Paymill Journal"
+msgstr "Is Refund and Paymill Journal"
+
+#. module: paymill
+#: field:account.voucher,paymill_preauth:0
+#: view:paymill.preauthorization:0
+#: field:sale.order,paymill_preauthorization_id:0
+msgid "Paymill Preauthorization"
+msgstr "Paymill Autorisation"
+
+#. module: paymill
+#: field:paymill.connect.configuration,clients_w:0
+#: field:paymill.connect.configuration,frauds_w:0
+#: field:paymill.connect.configuration,offers_w:0
+#: field:paymill.connect.configuration,payments_w:0
+#: field:paymill.connect.configuration,preauthorizations_w:0
+#: field:paymill.connect.configuration,refunds_w:0
+#: field:paymill.connect.configuration,subscriptions_w:0
+#: field:paymill.connect.configuration,transactions_w:0
+#: field:paymill.connect.configuration,webhooks_w:0
+msgid "Write"
+msgstr "Write"
+
+#. module: paymill
+#: view:sale.order:0
+msgid "Paymill Preauth"
+msgstr "Paymill Preauth"
+
+#. module: paymill
+#: field:account.voucher,is_paymill_preauth_active:0
+msgid "Is Paymill Preauthorization Active"
+msgstr "Is Paymill Preauthorization Active"
+
+#. module: paymill
+#: field:paymill.payment.information,cvc_code:0
+msgid "CVC"
+msgstr "CVC"
+
+#. module: paymill
+#: model:res.groups,name:paymill.group_paymill_admin
+msgid "Administrator"
+msgstr "Administrator"
+
+#. module: paymill
+#: field:paymill.preauthorization,description:0
+#: field:paymill.refund,description:0
+#: field:paymill.transaction,description:0
+msgid "Description"
+msgstr "Beschreibung"
+
+#. module: paymill
+#: field:paymill.preauthorization,currency:0
+#: field:paymill.transaction,currency:0
+msgid "Currency"
+msgstr "Währung"
+
+#. module: paymill
+#: field:paymill.connect.configuration,clients_r:0
+#: field:paymill.connect.configuration,frauds_r:0
+#: field:paymill.connect.configuration,offers_r:0
+#: field:paymill.connect.configuration,payments_r:0
+#: field:paymill.connect.configuration,preauthorizations_r:0
+#: field:paymill.connect.configuration,refunds_r:0
+#: field:paymill.connect.configuration,subscriptions_r:0
+#: field:paymill.connect.configuration,transactions_r:0
+#: field:paymill.connect.configuration,webhooks_r:0
+msgid "Read"
+msgstr "Read"
+
+#. module: paymill
+#: field:account.invoice,default_journal_id:0
+msgid "Journal"
+msgstr "Journal"
+
+#. module: paymill
+#: field:account.voucher,paymill_payment_information_id:0
+msgid "Paymill Card"
+msgstr "Paymill Karte"
+
+#. module: paymill
+#: field:paymill.transaction,origin_amount:0
+msgid "Original Amount"
+msgstr "Original-Menge"
+
+#. module: paymill
+#: field:sale.order,is_paymill_preauth:0
+msgid "Is Preauthorization"
+msgstr "Is Preauthorization"
+
+#. module: paymill
+#: field:paymill.payment.information,payment:0
+#: field:paymill.preauth.wizard,paymill_payment_information_id:0
+#: field:paymill.preauthorization,payment_id:0
+msgid "Payment"
+msgstr "Zahlung"
+
+#. module: paymill
+#: field:paymill.connect.configuration,name:0
+#: field:paymill.payment.information,name:0
+#: field:paymill.preauth.wizard,name:0
+#: field:paymill.preauthorization,name:0
+#: field:paymill.refund,name:0
+#: field:paymill.transaction,name:0
+msgid "Name"
+msgstr "Name"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+#: view:paymill.transaction:0
+#: field:paymill.transaction,paymill_refund_ids:0
+#: view:res.partner:0
+msgid "Refunds"
+msgstr "Rückerstattungen"
+
+#. module: paymill
+#: field:paymill.payment.information,country:0
+msgid "Country"
+msgstr "Land"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+msgid "Mode"
+msgstr "Mode"
+
+#. module: paymill
+#: model:ir.module.category,name:paymill.paymill_category
+msgid "Paymill"
+msgstr "Paymill"
+
+#. module: paymill
+#: view:paymill.connect.configuration:0
+msgid "Apply"
+msgstr "Apply"
+
+#. module: paymill
+#: model:ir.model,name:paymill.model_paymill_preauthorization
+msgid "paymill.preauthorization"
+msgstr "paymill.preauthorization"
+
